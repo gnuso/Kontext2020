@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--link rel="shortcut icon" href="../../assets/ico/favicon.png"-->
+
+	<title>Example: Navmenu Side Switch </title>
+
+	<!-- Bootstrap core CSS -->
+	<!--link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"-->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" />
+
+	<!-- Custom styles for this template -->
+	<link href="navmenu-push.css" rel="stylesheet">
+
+	<!-- The main container of all content -->
+
+</head>
+
+<body>
+	<!-- <b>Record:</b><br>
+	<label class="switch">
+		<input type="checkbox" id="record">
+		<div class="slider round"></div>
+	</label> -->
+	<h1> Kontextsensitive App </h1>
+
+	<h2>You are currently:</h2>
+	<p id="test"></p>
+
+	<b>Alpha:</b>
+	<p id="alpha"></p><br>
+	<b>Beta:</b>
+	<p id="beta"></p><br>
+	<b>Gamma:</b>
+	<p id="gamma"></p> <br>
+
+
+	<!-- <h2 dir="ltr">The Challenge</h2>
+	<p dir="ltr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit laborum laudantium eveniet voluptates
+		libero illo autem iste perspiciatis, molestias dolorem similique, itaque labore aperiam quam odio deserunt non.
+		Quaerat, officia?</p> -->
+
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<!--script src="dist/js/bootstrap.min.js"></script-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"
+		integrity="sha256-zrKYjrV5tdhLTivmOO9TAI5x6i5dcMVO4YOi/zUAqrk=" crossorigin="anonymous"></script>
+	<script src="js/offcanvas.js"></script>
+	<!-- jactivity scripts -->
+	<!-- <script src="newjs/jactivity_babel.js"></script> -->
+	<script src="js/transformer.js"></script>
+	<script src="js/decisiontree_engine.js"></script>
+
+	<script src="js/math.js"></script>
+	<script src="js/jactivity.js"></script>
+	<script src="js/deviceorientation.js"></script>
+
+	<script>
+		var activityCallback = function (activity) {
+			switch (activity.result) {
+				case "walking":
+					document.body.style.fontSize = "1.5em";
+					document.getElementById("test").innerHTML = "Walking";
+					break;
+				case "sitting":
+					document.body.style.fontSize = "1.0em";
+					document.getElementById("test").innerHTML = "Sitting";
+					break;
+				case "standing":
+					document.body.style.fontSize = "1.0em";
+					document.getElementById("test").innerHTML = "Standing";
+					break;
+				default:
+					document.body.style.fontSize = "1.0em";
+			}
+		}
+
+
+		if (window.DeviceOrientationEvent) {
+			if (typeof DeviceMotionEvent.requestPermission === 'function') {
+				DeviceOrientationEvent.requestPermission()
+					.then(response => {
+						if (response == 'granted') {
+							window.addEventListener('deviceorientation', function (orientation) {
+								// Read and store all acceleration and rotation values.
+								if (!isNaN(parseFloat(orientation.alpha))) {
+									document.getElementById("alpha").innerHTML = parseFloat(
+										orientation.alpha);
+								}
+								if (!isNaN(parseFloat(orientation.beta))) {
+									document.getElementById("beta").innerHTML = parseFloat(
+										orientation.beta);
+								}
+								if (!isNaN(parseFloat(orientation.gamma))) {
+									document.getElementById("gamma").innerHTML = parseFloat(
+										orientation.gamma);
+								}
+							}, false);
+						}
+					}).catch(console.error)
+			} else {
+				window.addEventListener('deviceorientation', function (orientation) {
+					// Read and store all acceleration and rotation values.
+					if (!isNaN(parseFloat(orientation.alpha))) {
+						document.getElementById("alpha").innerHTML = parseFloat(
+							orientation.alpha);
+					}
+					if (!isNaN(parseFloat(orientation.beta))) {
+						document.getElementById("beta").innerHTML = parseFloat(
+							orientation.beta);
+					}
+					if (!isNaN(parseFloat(orientation.gamma))) {
+						document.getElementById("gamma").innerHTML = parseFloat(
+							orientation.gamma);
+					}
+				}, false);
+			}
+		}
+
+
+		var activityClassifier = new jActivity("../", [devicemotion], activityCallback, ["walking", "standing", "sitting"],
+			1000);
+		//var touchClassifier = jActivite("js/",touchCallback, ["left","right"], 10000);
+	</script>
+</body>
+
+</html>
