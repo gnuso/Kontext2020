@@ -30,7 +30,7 @@ class jActivity {
 			}
 			$.ajax({
 				type: "GET",
-				url: ("https://julian3012.github.io/Webapplication/js/pmml2js_dt_4_3_with_compound_sp.xml"), //pmml2js_dt_4_3_with_compound_sp
+				url: ("https://gnuso.github.io/Kontext2020/js/pmml2js_dt_4_3_with_compound_sp.xml"), //pmml2js_dt_4_3_with_compound_sp
 				success: onSuccess
 			})
 		})
@@ -49,7 +49,7 @@ class jActivity {
 
 			$.ajax({
 				type: "GET",
-				url: ("https://julian3012.github.io/Webapplication/models/ClassificationTree_woSurrogate_new3.pmml"), //ClassificationTree_woSurrogate_new    ClassificationTree
+				url: ("https://gnuso.github.io/Kontext2020/models/ClassificationTree_woSurrogate_new3.pmml"), //ClassificationTree_woSurrogate_new    ClassificationTree
 				success: onSuccess,
 				error: onError,
 			})
