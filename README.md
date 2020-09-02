@@ -1,7 +1,7 @@
 # PMML to Javascript (pmml2js) - decision tree with CompoundPredicates (v4.3)
 ## Generieren von Javascript-Code aus dem PMML
 - PMML in den Ordner `pmml2js_with_compound_v_4_3` als `pmml.xml`kopieren
-- `pmml2js.html` im Browser öffnen (getestet in Safari)
+- `pmml2js.html` im Browser öffnen (getestet in Chrome)
 - Content des Browsers entspricht dem Entscheidungsbaum auf Javascript Code-Basis und kann in folgendem Code (von artistoex <http://stackoverflow.com/questions/8368698/how-to-implement-a-decision-tree-in-javascript-looking-for-a-better-solution-th/8369235#8369235>) verwendet werden:
 
 
